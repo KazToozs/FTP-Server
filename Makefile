@@ -5,7 +5,7 @@
 ## Login   <toozs-_c@epitech.net>
 ## 
 ## Started on  Mon May  2 09:55:55 2016 toozs-_c
-## Last update Tue May  3 10:35:06 2016 toozs-_c
+## Last update Tue May  3 16:35:38 2016 toozs-_c
 ##
 
 CC              =       gcc
@@ -19,6 +19,7 @@ SRCS		+=	./src/my.c
 SRCS		+=	./src/get_next_line.c
 SRCS		+=	./src/my_str_tab.c
 SRCS		+=	./src/read_commands.c
+SRCS		+=	./src/server.c
 
 SRCS		+=	./src/commands/c_cdup.c
 SRCS		+=	./src/commands/c_cwd.c

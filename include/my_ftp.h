@@ -5,7 +5,7 @@
 ** Login   <toozs-_c@epitech.net>
 ** 
 ** Started on  Mon May  2 22:08:31 2016 toozs-_c
-** Last update Tue May  3 13:04:51 2016 toozs-_c
+** Last update Tue May  3 16:35:00 2016 toozs-_c
 */
 
 #ifndef __MYFTP
@@ -31,6 +31,7 @@ char	**my_str_tab(char *str);
 int	check_commands(t_param *params);
 void	set_params(t_param *params, int fd);
 char	*upper_case(char *word);
+int	run_server(int port);
 
 /*
 ** COMMANDS

@@ -5,7 +5,7 @@
 ** Login   <toozs-_c@epitech.net>
 ** 
 ** Started on  Mon May  2 10:39:01 2016 toozs-_c
-** Last update Tue May  3 13:39:33 2016 toozs-_c
+** Last update Tue May  3 16:34:27 2016 toozs-_c
 */
 
 #include <sys/types.h>
@@ -23,7 +23,6 @@
 int				handle_client(int client_fd,
 					      struct in_addr sin_addr)
 {
-  /* static const char * const	welcome = "220 Your IP address is "; */
   char				*client_ip;
   t_param			params;
   char				*ret;
@@ -35,10 +34,6 @@ int				handle_client(int client_fd,
   write(1, client_ip, strlen(client_ip));
   write(1, "\n", 1);
   dprintf(client_fd, "220 Your IP address is %s\r\n", client_ip);
-  /* if (write(client_fd, welcome, strlen(welcome)) == -1 */
-  /*     || write(client_fd, client_ip, strlen(client_ip)) == -1 */
-  /*     || write(client_fd, "\r\n", 1) == -1) */
-  /*   return (1); */
   end = 0;
   while (!end && (ret = get_next_line(client_fd)))
     {
@@ -122,24 +117,9 @@ int			run_server(int port)
     return (1);
   if (server_loop(fd, &client_fd, &s_in_client) == 0)
     handle_client(client_fd, s_in_client.sin_addr);
-  dprintf(fd, "test\n");
   if (close(fd) == -1)
     return (1);
   if (close(client_fd) == -1)
     return (1);
-  return (0);
-}
-
-int			main(int ac, char **av)
-{
-  int			port;
-
-  if (ac == 3)
-    {
-      if (chdir(av[2]) == -1)
-	return (1);
-      port = atoi(av[1]);
-      run_server(port);
-    }
   return (0);
 }
