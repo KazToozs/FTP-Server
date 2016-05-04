@@ -5,7 +5,7 @@
 ** Login   <toozs-_c@epitech.net>
 ** 
 ** Started on  Mon May  2 16:06:42 2016 toozs-_c
-** Last update Tue May  3 14:28:02 2016 toozs-_c
+** Last update Wed May  4 11:34:23 2016 toozs-_c
 */
 
 #include <unistd.h>
@@ -20,17 +20,20 @@ static t_com g_coms[] =
     {"CWD", &_cwd},
     {"CDUP", &_cdup},
     {"QUIT", &_quit},
-    /* {"DELE", &_dele}, */
     {"PWD", &_pwd},
-    /* {"PASV", &_pasv}, */
-    /* {"PORT", &_port}, */
     {"HELP", &_help},
     {"NOOP", &_noop},
-    /* {"RETR", &_retr}, */
-    /* {"STOR", &_stor}, */
-    /* {"LIST", &_list}, */
     {NULL, NULL}
   };
+
+void		print_ip(int client_fd, struct in_addr sin_addr)
+{
+  char		*client_ip;
+
+  client_ip = inet_ntoa(sin_addr);
+  dprintf(1, "%s\n", client_ip);
+  dprintf(client_fd, "220 Your IP address is %s\r\n", client_ip);
+}
 
 void		set_params(t_param *param, int fd)
 {

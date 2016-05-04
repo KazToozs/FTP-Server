@@ -5,11 +5,13 @@
 ** Login   <toozs-_c@epitech.net>
 ** 
 ** Started on  Mon May  2 22:08:31 2016 toozs-_c
-** Last update Tue May  3 16:35:00 2016 toozs-_c
+** Last update Wed May  4 11:34:47 2016 toozs-_c
 */
 
 #ifndef __MYFTP
 #define __MYFTP
+
+#include <arpa/inet.h>
 
 typedef struct	s_param
 {
@@ -32,6 +34,7 @@ int	check_commands(t_param *params);
 void	set_params(t_param *params, int fd);
 char	*upper_case(char *word);
 int	run_server(int port);
+void	print_ip(int client_fd, struct in_addr sin_addr);
 
 /*
 ** COMMANDS
@@ -42,15 +45,9 @@ int		_user(t_param *param);
 int		_cwd(t_param *param);
 int		_cdup(t_param *param);
 int		_quit(t_param *param);
-int		_dele(t_param *param);
 int		_pwd(t_param *param);
-int		_pasv(t_param *param);
 int		_pass(t_param *param);
-int		_port(t_param *param);
 int		_help(t_param *param);
 int		_noop(t_param *param);
-int		_retr(t_param *param);
-int		_stor(t_param *param);
-int		_list(t_param *param);
 
 #endif

@@ -5,7 +5,7 @@
 ** Login   <toozs-_c@epitech.net>
 ** 
 ** Started on  Mon May  2 10:39:01 2016 toozs-_c
-** Last update Tue May  3 16:34:27 2016 toozs-_c
+** Last update Wed May  4 11:34:56 2016 toozs-_c
 */
 
 #include <sys/types.h>
@@ -23,25 +23,25 @@
 int				handle_client(int client_fd,
 					      struct in_addr sin_addr)
 {
-  char				*client_ip;
   t_param			params;
   char				*ret;
   char				**tab;
   int				end;
 
-  client_ip = inet_ntoa(sin_addr);
   set_params(&params, client_fd);
-  write(1, client_ip, strlen(client_ip));
-  write(1, "\n", 1);
-  dprintf(client_fd, "220 Your IP address is %s\r\n", client_ip);
+  print_ip(client_fd, sin_addr);
   end = 0;
-  while (!end && (ret = get_next_line(client_fd)))
+  while (!end && (ret = get_next_line(client_fd)) != NULL)
     {
       tab = my_str_tab(ret);
-      params.words = tab;
-      if (check_commands(&params) == 3)
-	end = 1;
-      free(ret);
+      if (tab && tab[0])
+	{
+	  params.words = tab;
+	  if (check_commands(&params) == 3)
+	    end = 1;
+	}
+      if (ret)
+	free(ret);
       free_tab(tab);
     }
   if (params.name)
