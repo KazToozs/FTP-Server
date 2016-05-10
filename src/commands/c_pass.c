@@ -5,7 +5,7 @@
 ** Login   <toozs-_c@epitech.net>
 ** 
 ** Started on  Tue May  3 10:39:27 2016 toozs-_c
-** Last update Wed May  4 10:46:26 2016 toozs-_c
+** Last update Tue May 10 15:02:12 2016 toozs-_c
 */
 
 #include <string.h>
@@ -28,12 +28,9 @@ int		_pass(t_param *param)
 	{
 	  param->logged = 1;
 	  dprintf(param->fd, "230 Login successful.\r\n");
+	  return (0);
 	}
     }
-  else
-    {
-      dprintf(param->fd, "530 Login incorrect.\r\n");
-      return (1);
-    }
-  return (0);
+  dprintf(param->fd, "530 Login incorrect.\r\n");
+  return (1);
 }
