@@ -5,7 +5,7 @@
 ** Login   <toozs-_c@epitech.net>
 ** 
 ** Started on  Mon Nov  3 10:09:14 2014 cristopher toozs-hobson
-** Last update Tue May  3 13:13:32 2016 toozs-_c
+** Last update Tue May 10 16:32:47 2016 toozs-_c
 */
 
 #include <stdlib.h>
@@ -76,12 +76,12 @@ char		**my_str_tab(char *str)
   while (str[i] && words > 0)
     {
       if (str[i] != ' ')
-	{
+      	{
 	  if ((tab[size] = my_strdup(str + i)) == NULL)
 	    return (NULL);
 	  tab[size++] [count_chars(str, &i)] = '\0';
 	  words = words - 1;
-	}
+      	}
       else
 	i++;
     }

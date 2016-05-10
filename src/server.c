@@ -5,7 +5,7 @@
 ** Login   <toozs-_c@epitech.net>
 ** 
 ** Started on  Mon May  2 10:39:01 2016 toozs-_c
-** Last update Wed May  4 11:34:56 2016 toozs-_c
+** Last update Tue May 10 16:50:43 2016 toozs-_c
 */
 
 #include <sys/types.h>
@@ -20,7 +20,7 @@
 #include "my_ftp.h"
 #include "my.h"
 
-int				handle_client(int client_fd,
+void				handle_client(int client_fd,
 					      struct in_addr sin_addr)
 {
   t_param			params;
@@ -40,13 +40,14 @@ int				handle_client(int client_fd,
 	  if (check_commands(&params) == 3)
 	    end = 1;
 	}
+      else if (ret && (ret[0] == '\t' || (ret[0] >= 32 && ret[0] < 127)))
+	handle_empty(params);
       if (ret)
 	free(ret);
       free_tab(tab);
     }
   if (params.name)
     free(params.name);
-  return (0);
 }
 
 int			make_socket(int port, struct sockaddr_in *s_in)

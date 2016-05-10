@@ -5,7 +5,7 @@
 ** Login   <toozs-_c@epitech.net>
 ** 
 ** Started on  Mon May  2 16:06:42 2016 toozs-_c
-** Last update Wed May  4 11:34:23 2016 toozs-_c
+** Last update Tue May 10 16:39:13 2016 toozs-_c
 */
 
 #include <unistd.h>
@@ -58,6 +58,17 @@ char		*upper_case(char *word)
 	}
     }
   return (word);
+}
+
+int		handle_empty(t_param params)
+{
+  if (params.logged)
+    {
+      dprintf(params.fd, "500 Unknown command.\r\n");
+    }
+  else
+    dprintf(params.fd, "530 Please login with USER and PASS.\r\n");
+  return (1);
 }
 
 int		check_commands(t_param *params)
