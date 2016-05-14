@@ -5,7 +5,7 @@
 ** Login   <toozs-_c@epitech.net>
 ** 
 ** Started on  Tue May  3 13:49:52 2016 toozs-_c
-** Last update Tue May 10 16:10:59 2016 toozs-_c
+** Last update Sat May 14 18:42:47 2016 toozs-_c
 */
 
 #include <unistd.h>
@@ -20,12 +20,21 @@ int		_cwd(t_param *param)
 
   if (param->logged)
     {
-      if (param->words[1] && !stat(param->words[1], &sta)
-	  && !access(param->words[1], X_OK) && chdir(param->words[1]) == -1)
+      if (param->words[1])
 	{
-          dprintf(param->fd, "550 Failed to change directory.\r\n");
-          return (1);
-        }
+	  if (stat(param->words[1], &sta) == -1
+	      && access(param->words[1], X_OK) == -1
+	      && chdir(param->words[1]) == -1)
+	    {
+	      dprintf(param->fd, "550 Failed to change directory.\r\n");
+	      return (1);
+	    }
+	}
+      else
+	{
+	  dprintf(param->fd, "501 Missing parameter.\r\n");
+	  return (1);
+	}
       dprintf(param->fd, "250 Directory successfully changed.\r\n");
       return (0);
     }
